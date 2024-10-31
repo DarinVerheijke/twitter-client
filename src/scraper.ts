@@ -410,8 +410,11 @@ export class Scraper {
    * @returns
    */
 
-  async sendTweet(text: string, replyToTweetId?: string) {
-    return await createCreateTweetRequest(text, this.auth, replyToTweetId);
+  async sendTweet(text: string, imageData?: Buffer, replyToTweetId?: string) {
+    return await createCreateTweetRequest(text, this.auth, {
+      imageData,
+      replyToTweetId,
+    });
   }
 
   /**
