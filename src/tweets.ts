@@ -204,7 +204,6 @@ export async function createCreateTweetRequest(
   const cookies = await auth.cookieJar().getCookies(onboardingTaskUrl);
   const xCsrfToken = cookies.find((cookie) => cookie.key === 'ct0');
 
-  //@ts-expect-error - This is a private API.
   const headers = new Headers({
     authorization: `Bearer ${(auth as any).bearerToken}`,
     cookie: await auth.cookieJar().getCookieString(onboardingTaskUrl),
