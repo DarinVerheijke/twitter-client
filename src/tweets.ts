@@ -161,10 +161,7 @@ export async function fetchTweetsAndReplies(
 
   return parseTimelineTweetsV2(res.value);
 }
-export async function uploadTwitterImage(
-  imageData: Buffer,
-  auth: TwitterAuth,
-) {
+export async function uploadTwitterImage(imageData: Buffer, auth: TwitterAuth) {
   const mediaUploadUrl = 'https://upload.twitter.com/1.1/media/upload.json';
   
   const cookies = await auth.cookieJar().getCookies(mediaUploadUrl);
@@ -172,7 +169,6 @@ export async function uploadTwitterImage(
 
   const form = new FormData();
   form.append('media', new Blob([imageData]), 'image.jpg');
-  
   const headers = new Headers({
     authorization: `Bearer ${(auth as any).bearerToken}`,
     cookie: await auth.cookieJar().getCookieString(mediaUploadUrl),
